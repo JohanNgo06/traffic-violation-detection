@@ -1,0 +1,29 @@
+# Python & AI (Chặn đẩy file nặng lên Git)
+venv/
+.venv/
+__pycache__/
+dataset/
+runs/
+*.pt
+*.onnx
+
+# Node.js & React
+node_modules/
+dist/
+build/
+.env
+
+# Media & Uploads (Chỉ giữ lại .gitkeep)
+uploads/videos/*
+!uploads/videos/.gitkeep
+uploads/frames/*
+!uploads/frames/.gitkeep
+uploads/evidence/*
+!uploads/evidence/.gitkeep
+*.mp4
+*.avi
+
+# IDE & OS
+.vscode/
+.DS_Store
+Thumbs.db
