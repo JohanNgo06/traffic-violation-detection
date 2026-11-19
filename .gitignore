@@ -5,6 +5,7 @@ __pycache__/
 dataset/
 runs/
 *.pt
+!ai_worker/weights/best.pt
 *.onnx
 
 # Node.js & React
