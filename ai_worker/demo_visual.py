@@ -1,13 +1,15 @@
 from ultralytics import YOLO
 
-# Nạp mô hình vừa train xong
-model = YOLO("runs/detect/train/weights/best.pt")
+if __name__ == '__main__':
+    # Nạp mô hình v1 vừa train xong
+    model = YOLO("ai_worker/weights/best.pt")
 
-# Chạy nhận diện + theo dõi quỹ đạo từng xe
-model.track(
-    source="video_test.mp4",  # Tên file video của bạn
-    show=True,                # Mở cửa sổ hiển thị video trực quan ngay lập tức
-    save=True,                # Lưu video kết quả vào runs/detect/track
-    conf=0.4,                 # Chỉ hiện những xe có độ tin cậy >= 40%
-    tracker="bytetrack.yaml"
-)
+    # Chạy nhận diện + tracking trên video test và lưu video kết quả
+    model.track(
+        source="uploads/videos/video_test.mp4",
+        conf=0.4,               # Ngưỡng tự tin 40%
+        iou=0.5,
+        show=True,              # Hiển thị cửa sổ xem trực tiếp
+        save=True,              # Lưu video kết quả vào runs/detect/track
+        device=0
+    )
