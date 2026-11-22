@@ -1,0 +1,14 @@
+{
+  "referenceSize": {"width": 1094, "height": 615},
+  "stopLine": [[0, 338], [81, 292], [842, 284], [878, 371]],
+  "redLight": {
+    "simulatedCycle": {"red": 60, "green": 40, "yellow": 2},
+    "lamps": {
+      "red": [929, 173, 944, 188],
+      "yellow": [929, 190, 944, 204],
+      "green": [929, 206, 944, 222]
+    },
+    "lineMargin": 3,
+    "stableFrames": 3
+  }
+}

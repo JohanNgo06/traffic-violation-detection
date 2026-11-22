@@ -1,0 +1,30 @@
+{
+  "referenceSize": {"width": 1094, "height": 615},
+  "sampleOverlay": {"confirmSeconds": 0.3, "sideMargin": 8},
+  "lanes": [
+    {
+      "laneName": "Lan 1",
+      "labelPosition": [70, 420],
+      "allowedVehicles": ["car", "truck"],
+      "polygon": [[203, 95], [389, 95], [140, 603], [-214, 603]]
+    },
+    {
+      "laneName": "Lan 2",
+      "labelPosition": [330, 420],
+      "allowedVehicles": ["car", "truck"],
+      "polygon": [[389, 95], [558, 95], [518, 603], [140, 603]]
+    },
+    {
+      "laneName": "Lan 3",
+      "labelPosition": [648, 420],
+      "allowedVehicles": ["motorbike", "bus"],
+      "polygon": [[558, 95], [727, 95], [886, 603], [518, 603]]
+    },
+    {
+      "laneName": "Lan 4",
+      "labelPosition": [920, 420],
+      "allowedVehicles": ["motorbike", "bus"],
+      "polygon": [[727, 95], [893, 95], [1250, 603], [886, 603]]
+    }
+  ]
+}
