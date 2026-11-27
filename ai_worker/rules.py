@@ -8,6 +8,7 @@ import numpy as np
 VEHICLE_TYPES = ("motorbike", "car", "truck", "bus")
 WRONG_LANE = "WRONG_LANE"
 RED_LIGHT = "RED_LIGHT"
+SPEEDING = "SPEEDING"
 VEHICLE_ALIASES = {
     "car": "car", "cars": "car", "oto": "car", "xeoto": "car", "automobile": "car",
     "truck": "truck", "trucks": "truck", "xetai": "truck", "lorry": "truck",
@@ -262,3 +263,30 @@ class RedLightRule:
             self.last_seen.pop(track_id)
             self.previous_side.pop(track_id, None)
             self.pending_crossings.pop(track_id, None)
+
+
+class SpeedingRule:
+    def __init__(self, limit_kmh):
+        if not math.isfinite(limit_kmh) or limit_kmh <= 0:
+            raise ValueError("Gioi han toc do phai lon hon 0.")
+        self.limit_kmh = limit_kmh
+        self.above_limit = {}
+        self.violated_ids = set()
+
+    def observe(self, track_id, speed_kmh, frame_idx, fps):
+        if speed_kmh is None or not math.isfinite(speed_kmh) or speed_kmh <= self.limit_kmh:
+            self.above_limit.pop(track_id, None)
+            return False
+
+        first_frame, last_frame = self.above_limit.get(track_id, (frame_idx, frame_idx - 1))
+        if last_frame != frame_idx - 1:
+            first_frame = frame_idx
+        self.above_limit[track_id] = (first_frame, frame_idx)
+        return frame_idx - first_frame >= math.ceil(0.5 * fps)
+
+    def mark_violation(self, track_id):
+        self.violated_ids.add(track_id)
+
+    def prune_missing_tracks(self, visible_ids):
+        for track_id in self.above_limit.keys() - visible_ids:
+            del self.above_limit[track_id]
